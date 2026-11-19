@@ -15,7 +15,8 @@ export function useLocalStorage(key, initialValue = null) {
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
+    const value = typeof state === "string" ? state : JSON.stringify(state);
+    localStorage.setItem(key, value);
   }, [key, state]);
 
   return [state, setState];
